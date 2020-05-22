@@ -18,5 +18,15 @@ def services():
         return redirect(url_for('services.services'))
     return render_template("services.html", form = form,services=Services.query.all())
 
+@service_blueprint.route('/services list', methods=['POST','GET'])
+def listServices():
+    services_list=Services.query.all()
+    services = {}
+    for x in services_list:
+        services[x.id]={"id":x.id,'band':x.band, 'package':x.package, 'amount':x.amount}
+
+    print(services)
+    return {'services':services}
+
 
 

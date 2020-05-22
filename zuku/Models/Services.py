@@ -16,4 +16,4 @@ class Services(db.Model):
 
 
     def __repr__(self):
-        return f"{self.package, self.amount, self.band}"
+        return f"{self.id,self.package, self.amount, self.band}"
