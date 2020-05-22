@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+
+{%block content%}
+<section>
+  <h1 style="text-align:center; font-size:2.5em  ">Services</h1>
+  <nav class="section" style="background:#d2d2d2;">
+    <form method="post">
+    {{form.hidden_tag()}}
+    {{form.package.label}}<br/>
+      {{form.package()}}<br/><br/>
+    {{form.band.label}}<br/>
+      {{form.band()}}<br/><br/>
+    {{form.amount.label}}<br/>
+      {{form.amount()}}<br/><br/>
+    {{form.submit()}}
+</form>
+  </nav>
+
+  <article class="section" >
+   <table>
+      <tr>
+        <th>Package</th>
+        <th>bandwidth</th>
+        <th>Cost</th>
+      </tr>
+     {%for service in services%}
+     <tr>
+
+      <td>{{service.package}}</td>
+      <td>{{service.band}}</td>
+      <td>{{service.amount}}</td>
+
+     </tr>
+     {%endfor%}
+
+    </table>
+  </article>
+</section>
+
+{%endblock%}

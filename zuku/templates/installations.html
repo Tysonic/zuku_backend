@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+
+{%block content%}
+<section>
+
+  <article class="section" >
+   <table>
+      <tr>
+        <th>Package</th>
+        <th>bandwidth</th>
+        <th>Cost</th>
+      </tr>
+     {%for service in services%}
+     <tr>
+
+      <td>{{service.package}}</td>
+      <td>{{service.band}}</td>
+      <td>{{service.amount}}</td>
+
+     </tr>
+     {%endfor%}
+
+    </table>
+  </article>
+</section>
+
+{%endblock%}
