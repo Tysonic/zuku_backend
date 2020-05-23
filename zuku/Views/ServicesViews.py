@@ -21,9 +21,9 @@ def services():
 @service_blueprint.route('/services list', methods=['POST','GET'])
 def listServices():
     services_list=Services.query.all()
-    services = {}
+    services = []
     for x in services_list:
-        services[x.id]={"id":x.id,'band':x.band, 'package':x.package, 'amount':x.amount}
+        services.append({"id":x.id,'band':x.band, 'package':x.package, 'amount':x.amount})
 
     print(services)
     return {'services':services}
