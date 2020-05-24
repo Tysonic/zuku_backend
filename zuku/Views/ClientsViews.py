@@ -24,11 +24,11 @@ def addClients():
 @client_blueprint.route('/register client', methods = ['POST', 'GET'])
 def registerClients():
 
-    form = request.json
-    new_client = Clients(username = form.username,email =form.email)
-    db.session.add(new_client)
-    db.session.commit()
-    return {'form':form}
+    result = request.json
+    # new_client = Clients(username = form.username,email =form.email)
+    # db.session.add(new_client)
+    # db.session.commit()
+    return result
 
 @client_blueprint.route('/list clients', methods=['POST','GET'])
 def listClients():
