@@ -21,14 +21,15 @@ def addClients():
     return render_template('add.html', form=form)
 
 
-@client_blueprint.route('/register client', methods = ['POST', 'GET'])
+@client_blueprint.route('/register client', methods = ['POST'])
 def registerClients():
 
     result = request.json
     # new_client = Clients(username = form.username,email =form.email)
     # db.session.add(new_client)
     # db.session.commit()
-    return result
+    print(result)
+    return {'result':result}
 
 @client_blueprint.route('/list clients', methods=['POST','GET'])
 def listClients():
