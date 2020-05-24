@@ -7,7 +7,6 @@ class Accounts(db.Model):
     username = db.Column(db.String)
     password = db.Column(db.String)
     email = db.Column(db.String)
-    client = db.relationship("Clients", backref='clients')
 
     def __int__(self, username, password, email):
         self.username = username
