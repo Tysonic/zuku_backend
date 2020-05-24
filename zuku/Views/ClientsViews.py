@@ -26,7 +26,7 @@ def registerClients():
 
     result = request.json
     new_client = Clients(username = result['username'],email =result['email'])
-    db.session.add(result)
+    db.session.add(new_client)
     db.session.commit()
     print(result)
     return {'result':result}
