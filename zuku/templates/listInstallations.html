@@ -1,0 +1,11 @@
+{%extends "base.html"%}
+
+{%block content%}
+ <table>
+      <tr><th>client</th><th>Services</th></tr>
+     {%for install in installations%}
+     <tr><td>{{install.client}}</td><td>{{install.service}}</td></tr>
+     {%endfor%}
+
+    </table>
+{%endblock%}

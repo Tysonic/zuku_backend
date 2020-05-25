@@ -13,4 +13,9 @@ def installations():
     db.session.add(new)
     db.session.commit()
     return form
+
+@installation_blueprint.route("/list installations")
+def installationList():
+    installations = Installations.query.all()
+    return  render_template('listInstallattions.html', installations=installations)
     
