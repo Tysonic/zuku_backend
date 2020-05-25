@@ -5,7 +5,7 @@ from zuku.Models.Installation import  Installations
 
 installation_blueprint = Blueprint("installations", __name__)
 
-@installation_blueprint.route("/instations", methods =['GET','POST'])
+@installation_blueprint.route("/installations", methods =['POST'])
 def installations():
 
     form = request.json
