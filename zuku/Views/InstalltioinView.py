@@ -17,5 +17,5 @@ def installations():
 @installation_blueprint.route("/list installations")
 def installationList():
     installations = Installations.query.all()
-    return  render_template('listInstallattions.html', installations=installations)
+    return  render_template('listInstallations.html', installations=installations)
     
