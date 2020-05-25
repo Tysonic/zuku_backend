@@ -7,8 +7,10 @@ installation_blueprint = Blueprint("installations", __name__)
 
 @installation_blueprint.route("/instations", methods =['GET','POST'])
 def installations():
-    new = Installations(client=1, service=1)
+
+    form = request.json
+    new = Installations(client=form['client'], service=form['service'])
     db.session.add(new)
     db.session.commit()
-    return render_template('installations.html')
+    return form
     
