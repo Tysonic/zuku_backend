@@ -20,7 +20,7 @@ def services():
         return redirect(url_for('services.services'))
     return render_template("services.html", form = form,services=Services.query.all())
 
-@service_blueprint.route('/services list', methods=['GET'])
+@service_blueprint.route('/list services and clients', methods=['GET'])
 def listServices():
     services_list=Services.query.all()
     clients_list = Clients.query.all()
@@ -31,7 +31,7 @@ def listServices():
     for client in clients_list:
         clients.append({
                 'username':client.username,'email':client.email,'fname':client.fname, 'oname':client.oname
-            ,'tel':client.tell,'apart_no':client.apart_no,'floor':client.floor,'estate':client.estate,'address':client.address
+            ,'tel':client.tel,'apart_no':client.apart_no,'floor':client.floor,'estate':client.estate,'address':client.address
             ,'city':client.city
         })
 
