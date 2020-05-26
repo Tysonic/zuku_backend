@@ -95,7 +95,7 @@ def registerClient():
 def clientLogin():
     form = request.json
 
-    user = Accounts.query.filter_by(email=form.email.data).first()
+    user = Accounts.query.filter_by(email=form['email']).first()
     if user is not None and check_password_hash(user.password_hash, form['password']) :
         login_user(user)
         return {'result':"success"}
