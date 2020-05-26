@@ -77,9 +77,9 @@ def register():
 def registerClient():
     form = request.json
 
-    if Accounts.query.filter_by(email=form.email.data).first():
+    if Accounts.query.filter_by(email=form["email"]).first():
         return {'result' : "your email has already been registered"}
-    if Accounts.query.filter_by(username=form.username.data).first():
+    if Accounts.query.filter_by(username=form["username"]).first():
         return {'result':"The User Name has already been taken Please Choose another name"}
     new_user = Accounts(username=form['username'], email=form['email'], password=form['password'])
     db.session.add(new_user)
