@@ -1,5 +1,5 @@
 from flask import url_for, request, render_template, flash, Blueprint
-from flask_login import logout_user, login_required, login_user, login_manager
+from flask_login import logout_user, login_required, login_user
 from werkzeug.routing import ValidationError
 from zuku import db
 from werkzeug.security import check_password_hash
@@ -7,7 +7,7 @@ from werkzeug.utils import redirect
 import re
 from zuku.Forms.AccountsForms import UserLoginForm, UserRegitrationForm
 from zuku.Models.Accounts import Accounts
-
+from zuku.Models.Clients import Clients
 
 account_blueprint = Blueprint('users', __name__, template_folder="templates")
 
@@ -71,6 +71,24 @@ def register():
         return render_template("register.html", form=form)
     except Exception as e:
         return render_template("register.html", error=e, form=form)
+
+
+@account_blueprint.route("/register client", methods=["GET", "POST"])
+def registerClient():
+    form = request.json
+
+    if Accounts.query.filter_by(email=form.email.data).first():
+        return {'result' : "your email has already been registered"}
+    if Accounts.query.filter_by(username=form.username.data).first():
+        return {'result':"The User Name has already been taken Please Choose another name"}
+    new_user = Accounts(username=form['username'], email=form['email'], password=form['password'])
+    db.session.add(new_user)
+    new_client = Clients(username = form['username'])
+    db.session.add(new_client)
+    db.session.commit()
+
+    return {'result':'success'}
+
 
 
 @account_blueprint.route("/client login", methods=['GET', 'POST'])
