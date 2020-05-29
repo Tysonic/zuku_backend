@@ -91,14 +91,13 @@ def registerClient():
 
 
 
-@account_blueprint.route("/client login", methods=['GET', 'POST'])
+@account_blueprint.route("/client login", methods=['POST'])
 def clientLogin():
     form = request.json
 
     user = Accounts.query.filter_by(email=form['email']).first()
-    if user is not None and check_password_hash(user.password_hash, form['password']) :
+    if user is not None and check_password_hash(user.password_hash, form['password']):
         login_user(user)
         return {'result':"success"}
-    else:
-        return {"result":"failed"}
+    return {"result":"failed"}
 
