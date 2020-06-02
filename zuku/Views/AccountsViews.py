@@ -95,6 +95,11 @@ def clientLogin():
     user = Accounts.query.filter_by(email=form['email']).first()
     if user is not None and check_password_hash(user.password_hash, form['password']):
         login_user(user)
-        return {'result':"success", user:form['email']}
+        return {'result':"success", 'user':form['email']}
     return {"result":"failed"}
 
+@account_blueprint.route("/client status", methods=["POST", 'GET'])
+def clientStatus():
+    if current_user.is_authenticated:
+        return "User is authenticated"
+    return "user must authenticate"

@@ -10,7 +10,6 @@ login_manager = LoginManager()
 app = Flask(__name__)
 CORS(app)
 login_manager.init_app(app)
-# login_manager.init_app(App)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config["SECRET_KEY"] = "fljsfjaiofuifvioadfhuefslscdufhcvjkduaweuo"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
