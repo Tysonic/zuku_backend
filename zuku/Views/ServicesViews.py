@@ -29,7 +29,7 @@ def listServices():
     for x in services_list:
         services.append({"id":x.id,'band':x.band, 'package':x.package, 'amount':x.amount})
     for client in clients_list:
-        clients.append({'id':client.id,'username':client.username,'email':client.email,'fname':client.fname
+        clients.append({'id':client.id,'username':client.username,'fname':client.fname
                            ,'oname':client.oname,'tel':client.tel,'apart_no':client.apart_no,'floor':client.floor
                            ,'estate':client.estate,'address':client.address,'city':client.city
         })
