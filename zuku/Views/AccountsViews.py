@@ -20,20 +20,17 @@ def login():
             if user is not None and check_password_hash(user.password_hash, form.password.data) :
 
                 login_user(user)
-                flash("logged in successfully")
                 next = request.args.get("next")
-
                 if next == None or not next[0] == '/':
                     next = url_for("index")
             else:
                 raise ValidationError("Password or username is incorrect ")
             return redirect(next)
 
-        return render_template("login.html", form=form)
+        return render_template("login.html", form=form, user = current_user.email)
     except Exception as e:
 
         return render_template("login.html", form=form, error =e)
-
 
 
 @account_blueprint.route("/logout user")
@@ -98,6 +95,6 @@ def clientLogin():
     user = Accounts.query.filter_by(email=form['email']).first()
     if user is not None and check_password_hash(user.password_hash, form['password']):
         login_user(user)
-        return {'result':"success"}
+        return {'result':"success", user:form['email']}
     return {"result":"failed"}
 
