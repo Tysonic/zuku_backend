@@ -5,6 +5,7 @@ from zuku import db
 from werkzeug.security import check_password_hash
 from werkzeug.utils import redirect
 import re
+from flask_login import current_user
 from zuku.Forms.AccountsForms import UserLoginForm, UserRegitrationForm
 from zuku.Models.Accounts import Accounts
 from zuku.Models.Clients import Clients
@@ -88,16 +89,17 @@ def registerClient():
 
 
 
-@account_blueprint.route("/client login", methods=['POST'])
+@account_blueprint.route("/client login", methods=['POST', 'GET'])
 def clientLogin():
     form = request.json
 
     user = Accounts.query.filter_by(email=form['email']).first()
     if user is not None and check_password_hash(user.password_hash, form['password']):
         login_user(user)
-        return {'result':"success", 'user':form['email']}
+        return {'result':"success", 'user':current_user.username}
     return {"result":"failed"}
 
+@login_required
 @account_blueprint.route("/client status", methods=["POST", 'GET'])
 def clientStatus():
     if current_user.is_authenticated:
