@@ -15,7 +15,17 @@ class Clients(db.Model):
     address = db.Column(db.String)
     city = db.Column(db.String)
 
-
+    def __init__(self, username,installation="",fname="", oname="",tel="", apart_no="",floor="",estate="",address="",city="" ):
+        self.username=username
+        self.installation=installation
+        self.fname=fname
+        self.oname=oname
+        self.tel=tel
+        self.apart_no = apart_no
+        self.floor=floor
+        self.estate=estate
+        self.address=address
+        self.city=city
 
     def __repr__(self):
         return f"{self.id, self.oname, self.tel, self.nin, self.apart_no, self.floor, self.estate, self.address, self.city}"
