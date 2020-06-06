@@ -6,19 +6,16 @@ from zuku.Models.Clients import Clients
 
 client_blueprint = Blueprint("clients", __name__)
 
-@client_blueprint.route('/add client', methods = ['POST', 'GET'])
-def addClients():
+@client_blueprint.route('/update client', methods = ['POST', 'GET'])
+def updateClients():
 
     form = request.json
-    if form.validate_on_submit():
-        Clients.query.filter_by(username=form['username']).update(dict(fname = form['fname'],oname = form['oname'],
-                             tel = form['tel'],apart_no = form['apart_no'], floor =form['floor'],estate =form['estate'],address = form['address'],
-                             city = form['city']))
-        db.session.add(new_client)
-        db.session.commit()
-        return redirect(url_for('clients.listClients'))
-
-    return render_template('add.html', form=form)
+    Clients.query.filter_by(username=form['username']).update(dict(fname = form['fname'],oname = form['oname'],
+                         tel = form['tel'],apart_no = form['apart_no'], floor =form['floor'],estate =form['estate'],address = form['address'],
+                         city = form['city']))
+    db.session.add(new_client)
+    db.session.commit()
+    return form
 
 
 
