@@ -27,6 +27,13 @@ def addClients():
 def listClients():
     return render_template('clientsList.html', clients = Clients.query.all())
 
-@client_blueprint.route('/list client api')
+@client_blueprint.route('/list client api', methods=['POST', 'GET'])
 def listClientApi():
-    return  {"clients":Clients.query.all()}
+    clients = []
+    client_list = Clients.query.all()
+    for client in client_list:
+        clients.append({'id':client.id,'username':client.username,'fname':client.fname
+                           ,'oname':client.oname,'tel':client.tel,'apart_no':client.apart_no,'floor':client.floor
+                           ,'estate':client.estate,'address':client.address,'city':client.city
+        })
+    return  {"clients":clients}
