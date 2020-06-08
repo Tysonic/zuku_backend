@@ -15,7 +15,7 @@ class Clients(db.Model):
     address = db.Column(db.String)
     city = db.Column(db.String)
 
-    def __init__(self, username,fname=" ", oname=" ",tel=" ", apart_no=" ",floor=" ",estate=" ",address=" ",city=" " ):
+    def __init__(self, username,fname="", oname=" ",tel=" ", apart_no=" ",floor=" ",estate=" ",address=" ",city=" " ):
         self.username=username
         self.fname=fname
         self.oname=oname
