@@ -27,4 +27,4 @@ def installationDetails():
     client = Clients.query.filter_by(username='Tysonic').first()
     installation = Installations.query.filter_by(client=client.id).first()
     service = Services.query.filter_by(id=installation.service).first()
-    return {"client":client, 'installation':installation,'service':service, user:form['client']}
+    return {"client":client, 'installation':installation,'service':service}
