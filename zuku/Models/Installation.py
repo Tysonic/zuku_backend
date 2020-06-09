@@ -9,4 +9,4 @@ class Installations(db.Model):
     installed = db.Column(db.Boolean)
 
     def __repr__(self):
-        return f"{self.client,self.service,self.installed}"
+        return f"{self.id,self.client,self.service,self.installed}"
