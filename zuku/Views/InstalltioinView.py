@@ -27,6 +27,6 @@ def installationDetails():
         client = Clients.query.filter_by(username=form['client'])
         installation = Installations.query.filter_by(client=client.id)
         service = Services.query.filter_by(id=installation.service)
-        return {"client":client, 'installation':installation,'service':service}
+        return {"client":client, 'installation':installation,'service':service, user:form['client']}
     except Exception as e:
         return {'error':str(e)}
