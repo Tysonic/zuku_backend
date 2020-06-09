@@ -1,7 +1,8 @@
 from zuku import db
 from flask import request, render_template, url_for, Blueprint
 from zuku.Models.Installation import  Installations
-
+from zuku.Models.Clients import Clients
+from zuku.Models.Services import Services
 
 installation_blueprint = Blueprint("installations", __name__)
 
@@ -19,3 +20,13 @@ def installationList():
     installations = Installations.query.all()
     return  render_template('listInstallations.html', installations=installations)
     
+@installation_blueprint.route('/installation details', methods=['POST','GET'])
+def installationDetails():
+    form = request.json
+    try:
+        client = Clients.query.filter_by(username=form['client'])
+        installation = Installations.query.filter_by(client=client.id)
+        service = Services.query.filter_by(id=installation.service)
+        return {"client":client, 'installation':installation,'service':service}
+    except Exception as e:
+        return {'error':str(e)}
