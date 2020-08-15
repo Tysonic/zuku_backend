@@ -10,7 +10,7 @@ client_blueprint = Blueprint("clients", __name__)
 def updateClients():
 
     form = request.json
-    Clients.query.filter_by(username=form['username']).update(dict(fname = form['fname'],oname = form['oname'],
+    Clients.query.filter_by(username=form['username'].lower()).update(dict(fname = form['fname'],oname = form['oname'],
                          tel = form['tel'],apart_no = form['apart_no'], floor =form['floor'],estate =form['estate'],address = form['address'],
                          city = form['city']))  
     db.session.commit()

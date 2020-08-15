@@ -1,4 +1,4 @@
-#!/home/tysonic/PycharmProjects/zuku_backend/venv/bin/python
+#!/home/tysonic/Projects/zuku_backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

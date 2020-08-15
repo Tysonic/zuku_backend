@@ -79,9 +79,9 @@ def registerClient():
         return {'result' : "your email has already been registered"}
     if Accounts.query.filter_by(username=form["username"]).first():
         return {'result':"The User Name has already been taken Please Choose another name"}
-    new_user = Accounts(username=form['username'], email=form['email'], password=form['password'])
+    new_user = Accounts(username=form['username'].lower(), email=form['email'].lower(), password=form['password'])
     db.session.add(new_user)
-    new_client = Clients(username = form['username'])
+    new_client = Clients(username = form['username'],tel=form['phone'])
     db.session.add(new_client)
     db.session.commit()
 
@@ -93,7 +93,7 @@ def registerClient():
 def clientLogin():
     form = request.json
 
-    user = Accounts.query.filter_by(email=form['email']).first()
+    user = Accounts.query.filter_by(email=form['email'].lower()).first()
     if user is not None and check_password_hash(user.password_hash, form['password']):
         login_user(user)
         return {'result':"success", 'user':current_user.username}

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/tysonic/PycharmProjects/zuku_backend/venv"
+VIRTUAL_ENV="/home/tysonic/Projects/zuku_backend/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
